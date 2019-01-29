@@ -3,7 +3,7 @@ import { Todo } from './model/todo.model';
 
 const estadoInicial: Todo[] = [];
 
-function todoReducer(state = estadoInicial, action:fromTodo.Acciones){
+export function todoReducer(state = estadoInicial, action:fromTodo.Acciones){
     switch (action.type) {
         
         case fromTodo.AGREGAR_TODO:
