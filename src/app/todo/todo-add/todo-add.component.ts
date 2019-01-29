@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/app.reducers';
 import { Store } from '@ngrx/store';
 import { AgregarTodo } from '../todo.actions';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-todo-add',
@@ -10,10 +11,15 @@ import { AgregarTodo } from '../todo.actions';
 })
 export class TodoAddComponent implements OnInit {
 
+  txtInput: FormControl;
+
   constructor(private store:Store<AppState>) {
     this.store.subscribe(state =>{
       console.log(state.todos);
     });
+
+    this.txtInput = new FormControl('', Validators.required);
+    
   }
 
   ngOnInit() {
@@ -21,9 +27,12 @@ export class TodoAddComponent implements OnInit {
 
 
   addTodo($event){
-    console.log();
-    const txt:string = $event.srcElement.value;
 
+    if (this.txtInput.invalid) {
+      return
+    }
+
+    const txt:string = this.txtInput.value;
     this.store.dispatch(new AgregarTodo(txt));
 
   }
