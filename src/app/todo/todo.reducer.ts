@@ -4,8 +4,8 @@ import { Todo } from './model/todo.model';
 
 
 const estadoInicial: Todo[] = [
-    new Todo('Vencer a thanos'),
-    new Todo('Derrotar a loki')
+    new Todo('Comer Frutas'),
+    new Todo('Comer Verduras')
 ];
 
 export function todoReducer(state = estadoInicial, action:fromTodo.Acciones){
