@@ -15,7 +15,7 @@ export class TodoAddComponent implements OnInit {
 
   constructor(private store:Store<AppState>) {
     this.store.subscribe(state =>{
-      console.log(state.todos);
+      // console.log(state.todos);
     });
 
     this.txtInput = new FormControl('', Validators.required);
