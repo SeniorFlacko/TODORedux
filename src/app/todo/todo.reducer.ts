@@ -56,6 +56,15 @@ export function todoReducer(state = estadoInicial, action:fromTodo.Acciones){
         case fromTodo.BORRAR_TODO:
             accion = <fromTodo.BorrarTodoAction> action;
             return state.filter(todoItem => todoItem.id != accion.id);
+        
+        case fromTodo.TOGGLE_ALL_TODO:
+            accion = <fromTodo.ToggleAllTodoAction> action;
+            return state.map(todoItem =>{
+                return {
+                    ...todoItem,
+                    completado: accion.completado
+                }
+            });
 
         default:
             return state;
