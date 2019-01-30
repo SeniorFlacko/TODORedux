@@ -29,11 +29,11 @@ export class TodoAddComponent implements OnInit {
   addTodo($event){
 
     if (this.txtInput.invalid) {
-      return
+      return;
     }
 
     const txt:string = this.txtInput.value;
     this.store.dispatch(new AgregarTodoAction(txt));
-
+    this.txtInput.reset();
   }
 }
