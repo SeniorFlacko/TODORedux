@@ -1,24 +1,41 @@
 import * as fromTodo from './todo.actions';
 import { Todo } from './model/todo.model';
 
-const atodo = new Todo('Derrotar a loki');
-atodo.completado = true;  
+
 
 const estadoInicial: Todo[] = [
     new Todo('Vencer a thanos'),
-    atodo
+    new Todo('Derrotar a loki')
 ];
 
 export function todoReducer(state = estadoInicial, action:fromTodo.Acciones){
+    let accion;
     switch (action.type) {
         
         case fromTodo.AGREGAR_TODO:
-            const todo = new Todo(action.payload);
+            accion = <fromTodo.AgregarTodoAction> action;
+            const todo = new Todo(accion.payload);
             
             return [ 
                 ...state,
                 todo
             ];
+
+        case fromTodo.TOGGLE_TODO:
+            accion = <fromTodo.ToggleTodoAction> action;
+            
+            
+            return state.map(todoItem =>{
+                if (todoItem.id === accion.id) {
+                    return {
+                        ...todoItem,
+                        completado: !todoItem.completado,
+                    }
+                }
+                else{
+                    return todoItem
+                }
+            });
 
         default:
             return state;

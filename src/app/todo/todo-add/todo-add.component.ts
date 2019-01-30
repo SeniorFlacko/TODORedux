@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AppState } from 'src/app/app.reducers';
 import { Store } from '@ngrx/store';
-import { AgregarTodo } from '../todo.actions';
 import { FormControl, Validators } from '@angular/forms';
+import { AgregarTodoAction } from '../todo.actions';
 
 @Component({
   selector: 'app-todo-add',
@@ -33,7 +33,7 @@ export class TodoAddComponent implements OnInit {
     }
 
     const txt:string = this.txtInput.value;
-    this.store.dispatch(new AgregarTodo(txt));
+    this.store.dispatch(new AgregarTodoAction(txt));
 
   }
 }
